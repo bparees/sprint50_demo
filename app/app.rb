@@ -3,9 +3,9 @@ require 'sinatra'
 set :bind, '0.0.0.0'
 set :port,8080
 get '/' do
-  "Hello World5!<br>
-  User is #{ENV['ADMIN_USERNAME']}<br>
-  Password is #{ENV['ADMIN_PASSWORD']}<br>
-  DB password is #{ENV['DB_PASSWORD']}"
+  "Hello World!
+  User is #{ENV['ADMIN_USERNAME']}
+  Password is #{ENV['ADMIN_PASSWORD']}
+  DB password is #{ENV['DB_PASSWORD']}\n"
 
 end
