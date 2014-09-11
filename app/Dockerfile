@@ -1,11 +1,11 @@
 FROM dockerfile/ruby
 
 RUN gem install sinatra
-ADD hello.rb /tmp/hello.rb
+ADD https://raw.githubusercontent.com/bparees/sprint50_demo/app/app.rb /tmp/app.rb
 
 #USER root
 EXPOSE 8080
-CMD ["/usr/bin/ruby","/tmp/hello.rb"]
+CMD ["/usr/bin/ruby","/tmp/app.rb"]
 
 
 
