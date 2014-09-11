@@ -1,0 +1,12 @@
+{
+    "id": "build100",
+    "desiredInput":
+    {
+        "type": "sti",
+        "sourceURI": "http://github.com/bparees/sprint50_demo.git",
+        "imageTag":     "bparees/sprint50,
+        "builderImage": "openshift/ruby-19-centos"
+    },
+ 
+    "secret": "secret101"
+}

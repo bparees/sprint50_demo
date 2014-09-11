@@ -4,13 +4,13 @@ export USE_HOST_DOCKER_SOCKET=true
 ./openshift start
 
 # Convert template to config
-curl -ld @/home/bparees/demofiles/template.json http://localhost:8080/osapi/v1beta1/templateConfigs | json > ~/demofiles/template.processed.json
+curl -ld @/home/bparees/demofiles/template/template.json http://localhost:8080/osapi/v1beta1/templateConfigs | json > ~/demofiles/processed/template.processed.json
 
 # Deploy the config
-./openshift kube apply -c ~/demofiles/template.processed.json
+./openshift kube apply -c ~/demofiles/processed/template.processed.json
 
 # define a build cfg
-curl -H "Content-Type:application/json" -d @/home/bparees/demofiles/buildcfg.json http://localhost:8080/osapi/v1beta1/buildConfigs
+curl -H "Content-Type:application/json" -d @/home/bparees/demofiles/buildcfg/buildcfg.json http://localhost:8080/osapi/v1beta1/buildConfigs
 
 # show build cfgs
 curl http://localhost:8080/osapi/v1beta1/buildConfigs
