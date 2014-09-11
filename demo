@@ -31,5 +31,6 @@ git commit -am . ; git push origin master
 #show build running
 curl http://$K8S:8080/osapi/v1beta1/builds | json
 
-
+#push build
+docker push bparees/sprint50
 
