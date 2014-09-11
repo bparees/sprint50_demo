@@ -34,6 +34,42 @@
       }
     },
     {
+      "id": "dbservice",
+      "kind": "Service",
+      "apiVersion": "v1beta1",
+      "port": 10000,
+      "selector": {
+        "name": "db"
+      }
+    },
+    {
+      "id": "dbpod",
+      "kind": "Pod",
+      "apiVersion": "v1beta1",
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "id": "dbpod",
+          "containers": [{
+            "name": "master",
+            "image": "dockerfile/mysql",
+            "env": [
+              {
+                "name": "DB_PASSWORD",
+                "value": "${DB_PASSWORD}"
+              }
+            ],
+            "ports": [{
+              "containerPort": 3306
+            }]
+          }]
+        }
+      },
+      "labels": {
+        "name": "db"
+      }
+    },
+    {
       "id": "frontendController",
       "kind": "ReplicationController",
       "apiVersion": "v1beta1",

@@ -2,9 +2,10 @@
     "id": "build100",
     "desiredInput":
     {
-        "type": "docker",
+        "type": "sti",
         "sourceURI": "git://github.com/bparees/sprint50_demo",
         "imageTag":     "bparees/sprint50",
+        "builderImage": "openshift/ruby-19-centos"
     },
  
     "secret": "secret101"

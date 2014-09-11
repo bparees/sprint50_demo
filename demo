@@ -1,6 +1,7 @@
 cd  ~/git/gocode/src/github.com/openshift/origin/_output/go/bin
 
 export USE_HOST_DOCKER_SOCKET=true
+setenforce 0
 ./openshift start
 
 # Convert template to config
@@ -10,11 +11,16 @@ curl -ld @/home/bparees/demofiles/template/template.json http://localhost:8080/o
 ./openshift kube apply -c ~/demofiles/processed/template.processed.json
 
 # define a build cfg
-curl -H "Content-Type:application/json" -d @/home/bparees/demofiles/buildcfg/buildcfg.json http://localhost:8080/osapi/v1beta1/buildConfigs
+curl -H "Content-Type:application/json" -d @/home/bparees/demofiles/buildcfg/buildcfg.json http://localhost:8080/osapi/v1beta1/buildConfigs | json
 
 # show build cfgs
-curl http://localhost:8080/osapi/v1beta1/buildConfigs
+curl http://localhost:8080/osapi/v1beta1/buildConfigs | json
 
+#run build
+curl -v -A "GitHub-Hookshot/github" -H "Content-Type:application/json" -H "X-Github-Event:ping" -d @/home/bparees/demofiles/buildinvoke/pingevent.json http://localhost:8080/osapi/v1beta1/buildConfigHooks/build100/secret101/github
+
+#show build running
+curl http://localhost:8080/osapi/v1beta1/builds | json
 
 
 
