@@ -1,7 +1,7 @@
 FROM dockerfile/ruby
 
 RUN gem install sinatra
-ADD https://raw.githubusercontent.com/bparees/sprint50_demo/app/app.rb /tmp/app.rb
+ADD https://raw.githubusercontent.com/bparees/sprint50_demo/master/app/app.rb /tmp/app.rb
 
 #USER root
 EXPOSE 8080
