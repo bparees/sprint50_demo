@@ -1,4 +1,4 @@
-cd  ~/git/gocode/src/github.com/openshift/origin/_output/go/bin
+cd /demo 
 
 unset USE_HOST_DOCKER_SOCKET
 export OPENSHIFT_MASTER=0.0.0.0
@@ -9,6 +9,7 @@ setenforce 0
 
 #on laptop:
 export K8S=ec2-54-166-172-113.compute-1.amazonaws.com
+unproxy
 
 # Convert template to config
 curl -ld @template/template.json http://$K8S:8080/osapi/v1beta1/templateConfigs | json > processed/template.processed.json

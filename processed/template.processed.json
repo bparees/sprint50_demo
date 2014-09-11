@@ -1,6 +1,6 @@
 {
     "apiVersion": "v1beta1",
-    "creationTimestamp": "2014-09-11T14:18:16-04:00",
+    "creationTimestamp": "2014-09-11T21:35:16Z",
     "description": "Example shows how to build a simple multi-tier application using Kubernetes and Docker",
     "id": "helloworld",
     "items": [
@@ -28,17 +28,17 @@
                                         {
                                             "key": "ADMIN_USERNAME",
                                             "name": "ADMIN_USERNAME",
-                                            "value": "admin5C3"
+                                            "value": "admin4O4"
                                         },
                                         {
                                             "key": "ADMIN_PASSWORD",
                                             "name": "ADMIN_PASSWORD",
-                                            "value": "UA8FQAFM"
+                                            "value": "MGrR7rSK"
                                         },
                                         {
                                             "key": "DB_PASSWORD",
                                             "name": "DB_PASSWORD",
-                                            "value": "h1lvrq0f"
+                                            "value": "ohH54ihN"
                                         }
                                     ],
                                     "image": "bparees/rubyhello",
