@@ -3,7 +3,7 @@
     "desiredInput":
     {
         "type": "docker",
-        "sourceURI": "git://github.com/bparees/sprint50_demo",
+        "sourceURI": "https://raw.githubusercontent.com/bparees/sprint50_demo/master/app/Dockerfile",
         "imageTag":     "bparees/sprint50",
     },
  

@@ -1,26 +1,32 @@
 cd  ~/git/gocode/src/github.com/openshift/origin/_output/go/bin
 
-export USE_HOST_DOCKER_SOCKET=true
+unset USE_HOST_DOCKER_SOCKET
+export OPENSHIFT_MASTER=0.0.0.0
+export OPENSHIFT_BIND_ADDR=0.0.0.0
 setenforce 0
 ./openshift start
 
+
+#on laptop:
+export K8S=ec2-54-166-172-113.compute-1.amazonaws.com
+
 # Convert template to config
-curl -ld @/home/bparees/demofiles/template/template.json http://localhost:8080/osapi/v1beta1/templateConfigs | json > ~/demofiles/processed/template.processed.json
+curl -ld @template/template.json http://$K8S:8080/osapi/v1beta1/templateConfigs | json > processed/template.processed.json
 
 # Deploy the config
-./openshift kube apply -c ~/demofiles/processed/template.processed.json
+./openshift kube apply -c processed/template.processed.json
 
 # define a build cfg
-curl -H "Content-Type:application/json" -d @/home/bparees/demofiles/buildcfg/buildcfg.json http://localhost:8080/osapi/v1beta1/buildConfigs | json
+curl -H "Content-Type:application/json" -d @buildcfg/buildcfg.json http://$K8S:8080/osapi/v1beta1/buildConfigs | json
 
 # show build cfgs
-curl http://localhost:8080/osapi/v1beta1/buildConfigs | json
+curl http://$K8S:8080/osapi/v1beta1/buildConfigs | json
 
 #run build
-curl -v -A "GitHub-Hookshot/github" -H "Content-Type:application/json" -H "X-Github-Event:ping" -d @/home/bparees/demofiles/buildinvoke/pingevent.json http://localhost:8080/osapi/v1beta1/buildConfigHooks/build100/secret101/github
+curl -v -A "GitHub-Hookshot/github" -H "Content-Type:application/json" -H "X-Github-Event:ping" -d @buildinvoke/pingevent.json http://$K8S:8080/osapi/v1beta1/buildConfigHooks/build100/secret101/github
 
 #show build running
-curl http://localhost:8080/osapi/v1beta1/builds | json
+curl http://$K8S:8080/osapi/v1beta1/builds | json
 
 
 
