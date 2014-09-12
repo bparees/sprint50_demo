@@ -4,8 +4,8 @@ scp /home/bparees/git/gocode/src/github.com/openshift/origin/_output/go/bin/open
 mkdir demo 
 cd demo
 mv /tmp/openshift .
-git clone https://github.com/bparees/sprint50_demo.git
-unset USE_HOST_DOCKER_SOCKET
+#git clone https://github.com/bparees/sprint50_demo.git
+#unset USE_HOST_DOCKER_SOCKET
 setenforce 0
 ./openshift start --listenAddr="0.0.0.0:8080"
 
@@ -23,6 +23,9 @@ curl -ld @template/template.json http://$K8S:8080/osapi/v1beta1/templateConfigs 
 
 # show app running
 curl localhost:5432
+
+# show build cfgs
+curl http://$K8S:8080/osapi/v1beta1/buildConfigs | json
 
 # define a build cfg
 curl -H "Content-Type:application/json" -d @buildcfg/buildcfg.json http://$K8S:8080/osapi/v1beta1/buildConfigs | json
