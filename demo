@@ -44,7 +44,8 @@ edit app.rb
 git commit -am . ; git push origin master
 
 #show build running
-curl http://$K8S:8080/osapi/v1beta1/builds | json
+#curl http://$K8S:8080/osapi/v1beta1/builds | json
+watch "curl http://$K8S:8080/osapi/v1beta1/builds | python -mjson.tool | grep status"
 
 #push build (ec2)
 docker push bparees/sprint50
