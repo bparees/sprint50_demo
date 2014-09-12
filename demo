@@ -1,12 +1,13 @@
 
-scp /home/bparees/git/gocode/src/github.com/openshift/origin/_output/go/bin/openshift fedora@ec2-54-81-17-156.compute-1.amazonaws.com:/tmp
+#scp /home/bparees/git/gocode/src/github.com/openshift/origin/_output/go/bin/openshift fedora@ec2-54-81-17-156.compute-1.amazonaws.com:/tmp
 
-mkdir demo 
+ssh fedora@ec2-54-81-17-156.compute-1.amazonaws.com
+sudo bash
+#mkdir demo
 cd demo
-mv /tmp/openshift .
+#mv /tmp/openshift .
 #git clone https://github.com/bparees/sprint50_demo.git
-#unset USE_HOST_DOCKER_SOCKET
-setenforce 0
+#setenforce 0
 ./openshift start --listenAddr="0.0.0.0:8080"
 
 
@@ -21,7 +22,7 @@ curl -ld @template/template.json http://$K8S:8080/osapi/v1beta1/templateConfigs 
 # Deploy the config
 /home/bparees/git/gocode/src/github.com/openshift/origin/_output/go/bin/openshift kube -h http://$K8S:8080 apply -c ~/demofiles/processed/template.processed.json
 
-# show app running
+# show app running (ec2)
 curl localhost:5432
 
 # show build cfgs
@@ -33,6 +34,9 @@ curl -H "Content-Type:application/json" -d @buildcfg/buildcfg.json http://$K8S:8
 # show build cfgs
 curl http://$K8S:8080/osapi/v1beta1/buildConfigs | json
 
+#show no build running
+curl http://$K8S:8080/osapi/v1beta1/builds | json
+
 #run build
 #curl -v -A "GitHub-Hookshot/github" -H "Content-Type:application/json" -H "X-Github-Event:ping" -d @buildinvoke/pingevent.json http://$K8S:8080/osapi/v1beta1/buildConfigHooks/build100/secret101/github
 cd ~/demofiles/app
@@ -42,11 +46,11 @@ git commit -am . ; git push origin master
 #show build running
 curl http://$K8S:8080/osapi/v1beta1/builds | json
 
-#push build
+#push build (ec2)
 docker push bparees/sprint50
 
-#kill docker container
+#kill docker container (ec2)
 docker kill <container>
 
-#show updated container running
+#show updated container running (ec2)
 curl localhost:5432
