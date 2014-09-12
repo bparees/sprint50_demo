@@ -1,5 +1,10 @@
-cd /demo 
 
+scp /home/bparees/git/gocode/src/github.com/openshift/origin/_output/go/bin/openshift fedora@ec2-54-81-17-156.compute-1.amazonaws.com:/tmp
+
+mkdir demo 
+cd demo
+mv /tmp/openshift .
+git clone https://github.com/bparees/sprint50_demo.git
 unset USE_HOST_DOCKER_SOCKET
 setenforce 0
 ./openshift start --listenAddr="0.0.0.0:8080"
@@ -7,7 +12,7 @@ setenforce 0
 
 #on laptop:
 cd ~/demofiles
-export K8S=ec2-54-166-172-113.compute-1.amazonaws.com
+export K8S=ec2-54-81-17-156.compute-1.amazonaws.com
 unproxy
 
 # Convert template to config
@@ -15,6 +20,9 @@ curl -ld @template/template.json http://$K8S:8080/osapi/v1beta1/templateConfigs 
 
 # Deploy the config
 /home/bparees/git/gocode/src/github.com/openshift/origin/_output/go/bin/openshift kube -h http://$K8S:8080 apply -c ~/demofiles/processed/template.processed.json
+
+# show app running
+curl localhost:5432
 
 # define a build cfg
 curl -H "Content-Type:application/json" -d @buildcfg/buildcfg.json http://$K8S:8080/osapi/v1beta1/buildConfigs | json
@@ -34,3 +42,8 @@ curl http://$K8S:8080/osapi/v1beta1/builds | json
 #push build
 docker push bparees/sprint50
 
+#kill docker container
+docker kill <container>
+
+#show updated container running
+curl localhost:5432

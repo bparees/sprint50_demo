@@ -1,6 +1,6 @@
 {
     "apiVersion": "v1beta1",
-    "creationTimestamp": "2014-09-11T22:29:36Z",
+    "creationTimestamp": "2014-09-12T01:16:32Z",
     "description": "Example shows how to build a simple multi-tier application using Kubernetes and Docker",
     "id": "helloworld",
     "items": [
@@ -28,17 +28,17 @@
                                         {
                                             "key": "ADMIN_USERNAME",
                                             "name": "ADMIN_USERNAME",
-                                            "value": "adminO62"
+                                            "value": "adminD04"
                                         },
                                         {
                                             "key": "ADMIN_PASSWORD",
                                             "name": "ADMIN_PASSWORD",
-                                            "value": "R1xvWWeP"
+                                            "value": "iC8AxIiJ"
                                         },
                                         {
                                             "key": "DB_PASSWORD",
                                             "name": "DB_PASSWORD",
-                                            "value": "ipDjTGSa"
+                                            "value": "2yrxvjQ6"
                                         }
                                     ],
                                     "image": "bparees/sprint50",
